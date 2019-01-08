@@ -1,0 +1,36 @@
+server:
+  port: 7675
+spring:
+  http:
+    multipart:
+      max-request-size: 5MB
+      max-file-size: 5MB
+      
+zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  retryable: true
+  ignoredServices: '*'
+  sensitive-headers:
+  routes:
+    shop-mobile:
+      path: /mobile/**
+      strPrefix: true
+      serviceId: shop-mobile
+
+hikari:
+  order:
+    jdbc-url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true
+    username: root
+    password: 123456a?
+    maximum-pool-size: 80
+    pool-name: order
+    connection-timeout: 30000
+    idle-timeout: 600000
+    max-lifetime: 1765000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
